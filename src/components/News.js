@@ -79,7 +79,7 @@ export default class News extends Component {
     this.state={
         articles: [],
         loading: false,
-        page:1,
+        page:1,             
        
 
     }
@@ -123,7 +123,9 @@ if(this.state.page+1>Math.ceil(this.state.totalResults/12)){
 }
 else{
 let url=`https://newsapi.org/v2/top-headlines?country=in&apiKey=945895608b4e41aeab5835c4538cf927&page=${this.state.page}&pageSize=12`;
-   let data=await fetch(url);
+   let data=await fetch(url,{
+    mode: 'cors'
+   });
    let parsedData=await data.json();
    console.log(parsedData);
    this.setState({articles:parsedData.articles  });
